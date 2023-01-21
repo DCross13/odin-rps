@@ -1,3 +1,8 @@
+let gameCount = 0;
+let winCount = 0;
+let lossCount = 0;
+let tieCount = 0;
+
 const rockBtn = document.querySelector('#rock');
 rockBtn.addEventListener('click', () => {playRound('rock')});
 
@@ -7,10 +12,18 @@ paperBtn.addEventListener('click', () => {playRound('paper')});
 const scissorsBtn = document.querySelector('#scissors');
 scissorsBtn.addEventListener('click', () => {playRound('scissors')});
 
-let gameCount = 0;
-let winCount = 0;
-let lossCount = 0;
-let tieCount = 0;
+const roundCounter = document.querySelector('.round.counter');
+roundCounter.innerHTML = `<h2 class="round counter">Start!</h2>`;
+
+const recentResult = document.querySelector('.subtext.result');
+recentResult.textContent = "Waiting...";
+
+const winCounter = document.querySelector('.win.Count');
+const tieCounter = document.querySelector('.tie.Count');
+const lossCounter = document.querySelector('.loss.Count');
+winCounter.textContent = "0";
+tieCounter.textContent = "0";
+lossCounter.textContent = "0";
 
 function game()
 {
@@ -74,7 +87,7 @@ function game()
         }
 
         //gameCount++;
-        console.log(outcome);
+        //console.log(outcome);
         console.log("The score is " + winCount + "-" + lossCount + "-" + tieCount + ".");
     }
 
@@ -212,24 +225,28 @@ function playRound(input)
                 gameCount++;
                 break;
         }
-
+        recentResult.textContent = outcome;
+        winCounter.textContent = winCount;
+        tieCounter.textContent = tieCount;
+        lossCounter.textContent = lossCount;
     }
 
     console.log(gameCount, result, outcome);
+    roundCounter.innerHTML = `<h2 class="round counter">Round ${gameCount}/5</h2>`;
 
     if (gameCount >= 5)
     {
         if(winCount > lossCount)
         {
-            console.log("Congratulations - you beat me!");
+            recentResult.textContent = "Congratulations - you beat me!";
         }
         else if (lossCount > winCount)
         {
-            console.log("Looks like AI wins again!");
+            recentResult.textContent = "Looks like AI reigns supreme!";
         }
         else
         {
-            console.log("It's a tie - better luck next time!");
+            recentResult.textContent = "It's a tie - better luck next time!";
         }
     }
 
