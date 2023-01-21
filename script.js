@@ -1,3 +1,12 @@
+const rockBtn = document.querySelector('#rock');
+rockBtn.addEventListener('click', () => {playRound('rock')});
+
+const paperBtn = document.querySelector('#paper');
+paperBtn.addEventListener('click', () => {playRound('paper')});
+
+const scissorsBtn = document.querySelector('#scissors');
+scissorsBtn.addEventListener('click', () => {playRound('scissors')});
+
 function game()
 {
     let result;
@@ -69,9 +78,10 @@ function game()
 
 //console.log(game())
 
-function playRound()
+function playRound(input)
 {
-    let user = getUserChoice();
+    console.log(input);
+    let user = getUserChoice(input);
     let computer = getComputerChoice();
     let result;
     //let outcome;
@@ -132,7 +142,7 @@ function playRound()
                 break;
             }
     }
-
+    console.log(result);
     return result;
 }
 
@@ -164,9 +174,11 @@ function getComputerChoice()
 
 //console.log(getComputerChoice());
 
-function getUserChoice()
+function getUserChoice(text)
 {
-    let userTextChoice = prompt("Type rock, paper, or scissors (typos will auto-select \"rock\"):");
+    // let userTextChoice = prompt("Type rock, paper, or scissors (typos will auto-select \"rock\"):");
+
+    let userTextChoice = text;
 
     userTextChoice = userTextChoice.toLowerCase(); //convert to lowercase
 
@@ -184,5 +196,3 @@ function getUserChoice()
     
     return userTextChoice;
 }
-
-//console.log(getUserChoice())
