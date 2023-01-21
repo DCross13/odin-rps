@@ -7,57 +7,73 @@ paperBtn.addEventListener('click', () => {playRound('paper')});
 const scissorsBtn = document.querySelector('#scissors');
 scissorsBtn.addEventListener('click', () => {playRound('scissors')});
 
+let gameCount = 0;
+let winCount = 0;
+let lossCount = 0;
+let tieCount = 0;
+
 function game()
 {
-    let result;
+    //let result;
     let winCount = 0;
     let lossCount = 0;
     let tieCount = 0;
+    //let gameCount = 0;
 
-    for (let i = 0; i < 5; i++)
+    while (gameCount < 5)
     {
-        result = playRound();
+        //result = playRound();
 
         switch(result)
         {
             case 0:
                 outcome = "Paper beats Rock, you lose!";
                 lossCount++;
+                gameCount++;
                 break;
             case 1:
                 outcome = "It's a tie!";
                 tieCount++;
+                gameCount++;
                 break;
             case 2:
                 outcome = "Rock beats Scissors, you win!";
                 winCount++;
+                gameCount++;
                 break;
             case 10:
                 outcome = "Scissors beats Paper, you lose!";
                 lossCount++;
+                gameCount++;
                 break;
             case 11:
                 outcome = "It's a tie!";
                 tieCount++;
+                gameCount++;
                 break;
             case 12:
                 outcome = "Paper beats Rock, you win!";
                 winCount++;
+                gameCount++;
                 break;
             case 20:
                 outcome = "Rock beats Scissors, you lose!";
                 lossCount++;
+                gameCount++;
                 break;
             case 21:
                 outcome = "It's a tie!";
                 tieCount++;
+                gameCount++;
                 break;
             case 22:
                 outcome = "Scissors beats Paper, you win!";
                 winCount++;
+                gameCount++;
                 break;
         }
 
+        //gameCount++;
         console.log(outcome);
         console.log("The score is " + winCount + "-" + lossCount + "-" + tieCount + ".");
     }
@@ -80,10 +96,11 @@ function game()
 
 function playRound(input)
 {
-    console.log(input);
+    //console.log(input);
     let user = getUserChoice(input);
     let computer = getComputerChoice();
-    let result;
+    //let result;
+    //let gameCount = 0;
     //let outcome;
 
     //console.log(user);
@@ -142,7 +159,81 @@ function playRound(input)
                 break;
             }
     }
-    console.log(result);
+
+    if (gameCount < 5)
+    {
+        //result = playRound();
+
+        switch(result)
+        {
+            case 0:
+                outcome = "Paper beats Rock, you lose!";
+                lossCount++;
+                gameCount++;
+                break;
+            case 1:
+                outcome = "It's a tie!";
+                tieCount++;
+                gameCount++;
+                break;
+            case 2:
+                outcome = "Rock beats Scissors, you win!";
+                winCount++;
+                gameCount++;
+                break;
+            case 10:
+                outcome = "Scissors beats Paper, you lose!";
+                lossCount++;
+                gameCount++;
+                break;
+            case 11:
+                outcome = "It's a tie!";
+                tieCount++;
+                gameCount++;
+                break;
+            case 12:
+                outcome = "Paper beats Rock, you win!";
+                winCount++;
+                gameCount++;
+                break;
+            case 20:
+                outcome = "Rock beats Scissors, you lose!";
+                lossCount++;
+                gameCount++;
+                break;
+            case 21:
+                outcome = "It's a tie!";
+                tieCount++;
+                gameCount++;
+                break;
+            case 22:
+                outcome = "Scissors beats Paper, you win!";
+                winCount++;
+                gameCount++;
+                break;
+        }
+
+    }
+
+    console.log(gameCount, result, outcome);
+
+    if (gameCount >= 5)
+    {
+        if(winCount > lossCount)
+        {
+            console.log("Congratulations - you beat me!");
+        }
+        else if (lossCount > winCount)
+        {
+            console.log("Looks like AI wins again!");
+        }
+        else
+        {
+            console.log("It's a tie - better luck next time!");
+        }
+    }
+
+    //gameCount++;
     return result;
 }
 
